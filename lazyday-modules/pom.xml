@@ -9,6 +9,12 @@
         <version>0.0.1</version>
     </parent>
 
+    <packaging>pom</packaging>
     <artifactId>lazyday-modules</artifactId>
+
+    <modules>
+        <module>lazyday-family</module>
+        <module>lazyday-system</module>
+    </modules>
 
 </project>

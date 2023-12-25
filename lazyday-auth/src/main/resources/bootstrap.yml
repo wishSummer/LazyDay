@@ -1,0 +1,20 @@
+# Tomcat
+server:
+  port: 9200
+
+# Spring
+spring:
+  application:
+    name: lazyDay-auth
+  profiles:
+    # 环境配置
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 120.55.99.114:8848
+      config:
+        server-addr: 120.55.99.114:8848
+        file-extension: yml
+

@@ -21,6 +21,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <lazyday.version>0.0.1</lazyday.version>
+        <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
+        <spring-cloud.version>2022.0.0</spring-cloud.version>
+        <spring-boot.version>3.0.2</spring-boot.version>
+        <mybatis-plus.version>3.5.4.1</mybatis-plus.version>
     </properties>
 
     <dependencyManagement>
@@ -28,7 +32,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2022.0.0.0</version>
+                <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -36,7 +40,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2022.0.0</version>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -44,11 +48,21 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>3.0.2</version>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
+            <!--            mybatis-plus-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+
+
+            <!--            项目模块-->
             <dependency>
                 <groupId>io.github.wishsummer</groupId>
                 <artifactId>lazyday-common</artifactId>
@@ -67,11 +81,6 @@
                 <version>${lazyday.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>io.github.wishsummer</groupId>
-                <artifactId>lazyday-modules</artifactId>
-                <version>0.0.1</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

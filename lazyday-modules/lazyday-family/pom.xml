@@ -5,13 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.github.wishsummer</groupId>
-        <artifactId>lazyday</artifactId>
+        <artifactId>lazyday-modules</artifactId>
         <version>0.0.1</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>lazyday-gateway</artifactId>
+    <artifactId>lazyday-family</artifactId>
 
-
+    <!--    nacos-->
     <dependencies>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -23,9 +24,10 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
+        <!--        web-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
         <!-- SpringCloud Loadbalancer -->
@@ -39,6 +41,16 @@
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
 
+<!--        mybatis-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+        <!--        自身模块-->
+        <dependency>
+            <groupId>io.github.wishsummer</groupId>
+            <artifactId>lazyday-common</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

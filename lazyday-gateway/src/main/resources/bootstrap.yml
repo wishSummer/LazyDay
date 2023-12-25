@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 120.55.99.114:8848
+        file-extension: yml
+  application:
+    name: lazyday-gateway
