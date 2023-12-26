@@ -4,15 +4,17 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import lombok.Data;
 
 /**
  * 操作日志记录
+ *
  * @TableName sys_log
  */
-@TableName(value ="sys_log")
+@TableName(value = "sys_log")
 @Data
 public class SysLogObject implements Serializable {
     /**
@@ -28,7 +30,7 @@ public class SysLogObject implements Serializable {
     private String title;
 
     /**
-     * 业务类型（0其它 1新增 2修改 3删除）
+     * 业务类型（BusinessTypeEnum）
      */
     @TableField(value = "business_type")
     private Integer businessType;

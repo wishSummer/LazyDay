@@ -1,7 +1,7 @@
 package io.github.service;
 
-import io.github.domain.SysLogObject;
 import com.baomidou.mybatisplus.extension.service.IService;
+import io.github.domain.SysLogObject;
 
 /**
  * @author w7562

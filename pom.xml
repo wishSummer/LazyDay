@@ -25,6 +25,7 @@
         <spring-cloud.version>2022.0.0</spring-cloud.version>
         <spring-boot.version>3.0.2</spring-boot.version>
         <mybatis-plus.version>3.5.4.1</mybatis-plus.version>
+        <fastjson.version>2.0.42</fastjson.version>
     </properties>
 
     <dependencyManagement>
@@ -79,6 +80,12 @@
                 <groupId>io.github.wishsummer</groupId>
                 <artifactId>lazyday-gateway</artifactId>
                 <version>${lazyday.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
 
         </dependencies>
