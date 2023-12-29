@@ -13,6 +13,7 @@
         <module>lazyday-gateway</module>
         <module>lazyday-auth</module>
         <module>lazyday-modules</module>
+      <module>lazyday-api</module>
     </modules>
 
     <properties>

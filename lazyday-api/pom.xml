@@ -9,26 +9,12 @@
     <version>0.0.1</version>
   </parent>
 
-  <artifactId>lazyday-auth</artifactId>
+  <artifactId>lazyday-api</artifactId>
 
   <dependencies>
-
-    <!--        bootstap-->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-bootstrap</artifactId>
-    </dependency>
-
-    <!--        自身模块-->
     <dependency>
       <groupId>io.github.wishsummer</groupId>
       <artifactId>lazyday-common</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>io.github.wishsummer</groupId>
-      <artifactId>lazyday-api</artifactId>
-      <version>0.0.1</version>
     </dependency>
   </dependencies>
 
