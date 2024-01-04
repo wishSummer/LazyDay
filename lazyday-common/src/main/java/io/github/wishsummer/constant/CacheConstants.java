@@ -8,4 +8,6 @@ package io.github.wishsummer.constant;
  */
 public class CacheConstants {
 
+    public static final String PASSWORD_ERROR_CONT_KEY = "password_error_cont:";
+
 }
