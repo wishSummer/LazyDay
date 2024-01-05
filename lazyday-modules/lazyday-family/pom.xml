@@ -49,7 +49,7 @@
         <!--        自身模块-->
         <dependency>
             <groupId>io.github.wishsummer</groupId>
-            <artifactId>lazyday-common</artifactId>
+            <artifactId>lazyday-api</artifactId>
         </dependency>
     </dependencies>
 

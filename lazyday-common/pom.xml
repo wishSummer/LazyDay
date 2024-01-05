@@ -43,11 +43,6 @@
       <artifactId>jakarta.servlet-api</artifactId>
     </dependency>
 
-    <!--        mybatis-plus-->
-    <dependency>
-      <groupId>com.baomidou</groupId>
-      <artifactId>mybatis-plus-boot-starter</artifactId>
-    </dependency>
 
     <!-- SpringBoot Boot Redis -->
     <dependency>
