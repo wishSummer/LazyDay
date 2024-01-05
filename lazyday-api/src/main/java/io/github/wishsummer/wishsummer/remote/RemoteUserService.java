@@ -2,7 +2,7 @@ package io.github.wishsummer.wishsummer.remote;
 
 import io.github.wishsummer.constant.ServiceNameConstants;
 import io.github.wishsummer.domain.Result;
-import io.github.wishsummer.wishsummer.model.UserInfo;
+import io.github.wishsummer.model.LoginUser;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,5 +17,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface RemoteUserService {
 
     @GetMapping("/user/{username}")
-    public Result<UserInfo> getUserInfo(@PathVariable("username") String username);
+    public Result<LoginUser> getUserInfo(@PathVariable("username") String username);
 }

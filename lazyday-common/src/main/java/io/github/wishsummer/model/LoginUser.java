@@ -1,4 +1,4 @@
-package io.github.wishsummer.wishsummer.model;
+package io.github.wishsummer.model;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import lombok.Data;
  * @version $ Id: UserInfo.java, 2023/12/28 16:55 $
  */
 @Data
-public class UserInfo {
+public class LoginUser {
 
     private String username;
 

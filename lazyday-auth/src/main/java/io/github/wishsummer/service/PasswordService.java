@@ -5,7 +5,7 @@ import io.github.wishsummer.enums.BusinessTypeEnum;
 import io.github.wishsummer.exception.ServiceException;
 import io.github.wishsummer.utils.SecurityUtils;
 import io.github.wishsummer.wishsummer.domain.SysLogObject;
-import io.github.wishsummer.wishsummer.model.UserInfo;
+import io.github.wishsummer.model.LoginUser;
 import io.github.wishsummer.wishsummer.remote.RemoteLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -42,19 +42,19 @@ public class PasswordService {
     /**
      * 验证用户登录信息
      * 更新用户登录失败次数
-     * @param userInfo 用户信息
+     * @param loginUser 用户信息
      * @param password 登陆输入的明文密码
      */
-    public void updateUserRetryCache(UserInfo userInfo, String password) {
-        Integer retryCount = getRetryCount(userInfo.getUsername());
-        if (!SecurityUtils.matchesPassword(password, userInfo.getPassword())) {
+    public void updateUserRetryCache(LoginUser loginUser, String password) {
+        Integer retryCount = getRetryCount(loginUser.getUsername());
+        if (!SecurityUtils.matchesPassword(password, loginUser.getPassword())) {
             retryCount = retryCount + 1;
             String errMsg = String.format("密码输入错误%S次", retryCount);
-            remoteLogService.saveLog(setSysLogObject(userInfo.getUsername(), 1, errMsg));
-            redisService.setCacheObject(getCacheKey(userInfo.getUsername()), retryCount, CacheConstants.PASSWORD_ERROR_WITTING_TIME.longValue(), TimeUnit.MINUTES);
+            remoteLogService.saveLog(setSysLogObject(loginUser.getUsername(), 1, errMsg));
+            redisService.setCacheObject(getCacheKey(loginUser.getUsername()), retryCount, CacheConstants.PASSWORD_ERROR_WITTING_TIME.longValue(), TimeUnit.MINUTES);
             throw new ServiceException("用户不存在或密码错误");
         }
-        clearLoginRetryCache(userInfo.getUsername());
+        clearLoginRetryCache(loginUser.getUsername());
     }
 
     /**

@@ -3,7 +3,7 @@ package io.github.wishsummer.service;
 import io.github.wishsummer.constant.UserConstants;
 import io.github.wishsummer.domain.Result;
 import io.github.wishsummer.exception.ServiceException;
-import io.github.wishsummer.wishsummer.model.UserInfo;
+import io.github.wishsummer.model.LoginUser;
 import io.github.wishsummer.wishsummer.remote.RemoteLogService;
 import io.github.wishsummer.wishsummer.remote.RemoteUserService;
 import org.apache.commons.lang3.StringUtils;
@@ -45,7 +45,7 @@ public class AuthService {
         passwordService.checkRetryCount(username);
 
         //TODO 查询用户信息
-        Result<UserInfo> userInfoResult = remoteUserService.getUserInfo(username);
+        Result<LoginUser> userInfoResult = remoteUserService.getUserInfo(username);
         if (userInfoResult == null || userInfoResult.getData() == null) {
             remoteLogService.saveLog(passwordService.setSysLogObject(null, 0, "登录用户不存在"));
             throw new ServiceException("登录用户" + username + "不存在");
@@ -53,10 +53,10 @@ public class AuthService {
         if (Result.SUCCESS != userInfoResult.getCode()) {
             throw new ServiceException(userInfoResult.getMessage());
         }
-        UserInfo userInfo = userInfoResult.getData();
+        LoginUser loginUser = userInfoResult.getData();
 
-        // 验证用户登录信息，更新用户登录尝试次数
-        passwordService.updateUserRetryCache(userInfo, password);
+        // 验证用户登录信息，更新用户登录尝试次数 TODO 临时挂参loginUser，后续修改为内部user对象参数
+        passwordService.updateUserRetryCache(loginUser, password);
 
 
         //TODO 验证用户信息
