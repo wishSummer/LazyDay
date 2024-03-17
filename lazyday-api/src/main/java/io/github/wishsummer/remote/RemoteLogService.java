@@ -1,9 +1,9 @@
-package io.github.wishsummer.wishsummer.remote;
+package io.github.wishsummer.remote;
 
 import io.github.wishsummer.constant.ServiceNameConstants;
 import io.github.wishsummer.domain.Result;
-import io.github.wishsummer.wishsummer.domain.SysLogObject;
-import io.github.wishsummer.wishsummer.remote.factory.RemoteLogServiceFallbackFactory;
+import io.github.wishsummer.domain.SysLogObject;
+import io.github.wishsummer.remote.factory.RemoteLogServiceFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,4 +1,4 @@
-package io.github.wishsummer.wishsummer.domain;
+package io.github.wishsummer.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

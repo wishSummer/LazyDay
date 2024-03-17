@@ -1,4 +1,4 @@
-package io.github.wishsummer.wishsummer.remote;
+package io.github.wishsummer.remote;
 
 import io.github.wishsummer.constant.ServiceNameConstants;
 import io.github.wishsummer.domain.Result;

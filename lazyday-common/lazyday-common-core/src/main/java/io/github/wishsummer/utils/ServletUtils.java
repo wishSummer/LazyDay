@@ -36,7 +36,8 @@ public class ServletUtils {
      */
     public static HttpServletRequest getRequest() {
         try {
-            return getRequestAttributes().getRequest();
+            ServletRequestAttributes requestAttributes = getRequestAttributes();
+            return requestAttributes == null ? null : requestAttributes.getRequest();
         } catch (Exception e) {
             log.error("getRequestError:{}", e);
             return null;
@@ -77,6 +78,9 @@ public class ServletUtils {
      * 获取所有请求参数
      */
     public static Map<String, String> getParamMap(ServletRequest request) {
+        if (request == null) {
+            return new HashMap<>();
+        }
         Map<String, String> params = new HashMap<>();
         for (Map.Entry<String, String[]> entry : getParams(request).entrySet()) {
             params.put(entry.getKey(), StringUtils.join(entry.getValue(), ","));

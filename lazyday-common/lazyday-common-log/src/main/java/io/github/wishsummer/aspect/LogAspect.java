@@ -5,7 +5,7 @@ import io.github.wishsummer.annotation.WebLog;
 import io.github.wishsummer.domain.SysLogObject;
 import io.github.wishsummer.enums.BusinessTypeEnum;
 import io.github.wishsummer.filter.PropertyPreExcludeFilter;
-import io.github.remote.RemoteLogService;
+import io.github.wishsummer.remote.RemoteLogService;
 import io.github.wishsummer.utils.ServletUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -38,38 +38,40 @@ public class LogAspect {
 
     private static final String[] EXCLUDE_PROPERTIES = {};
 
-    public static final String POINTCUT_SIGN = "@annotation(io.github.annotation.WebLog)";
+    public static final String POINTCUT_SIGN = "@annotation(webLog)";
 
     private RemoteLogService remoteLogService;
+
 
     @Pointcut(POINTCUT_SIGN)
     public void pointcut() {
     }
 
-    @Before("pointcut()")
-    public void doBefore() {
+    @Before("@annotation(webLog)")
+    public void doBefore(JoinPoint joinPoint, WebLog webLog) {
         TIME_THREADLOCAL.set(System.currentTimeMillis());
     }
 
-    @AfterReturning(pointcut = "pointcut()", returning = "result")
-    public void doAfterReturning(JoinPoint joinPoint, Object result) {
-        handleLog(joinPoint, null, result);
+    @AfterReturning(pointcut = "@annotation(webLog)", returning = "result")
+    public void doAfterReturning(JoinPoint joinPoint, WebLog webLog, Object result) {
+        handleLog(joinPoint, webLog, null, result);
     }
 
-    @AfterThrowing(pointcut = "pointcut()", throwing = "e")
-    public void doAfterThrowing(JoinPoint joinPoint, Exception e) {
-        handleLog(joinPoint, e, null);
+    @AfterThrowing(value = "@annotation(webLog)", throwing = "e")
+    public void doAfterThrowing(JoinPoint joinPoint, WebLog webLog, Exception e) {
+        handleLog(joinPoint, webLog, e, null);
     }
 
-    protected void handleLog(final JoinPoint joinPoint, final Exception exc, Object result) {
+    protected void handleLog(final JoinPoint joinPoint, WebLog webLog, final Exception exc, Object result) {
         try {
+            System.out.printf("注解", webLog);
             SysLogObject sysLogObject = new SysLogObject();
 //            操作访问结果状态
             sysLogObject.setStatus(0);
 //            请求地址 TODO 获取ip
             sysLogObject.setLogIp("");
 //            operLog.setOperUrl(StringUtils.substring(ServletUtils.getRequest().getRequestURI(), 0, 255));
-            sysLogObject.setLogUrl(ServletUtils.getRequest().getRequestURI());
+//            sysLogObject.setLogUrl(ServletUtils.getRequest().getRequestURI());
 //            用户信息 TODO 用户名
             sysLogObject.setLogName("");
 //            异常信息
@@ -83,7 +85,7 @@ public class LogAspect {
             String className = joinPoint.getTarget().getClass().getName();
             String methodName = joinPoint.getSignature().getName();
             sysLogObject.setMethod(className + "." + methodName + "()");
-            sysLogObject.setRequestMethod(ServletUtils.getRequest().getMethod());
+//            sysLogObject.setRequestMethod(ServletUtils.getRequest().getMethod());
 
             sysLogObject.setBusinessType(BusinessTypeEnum.OTHER.getCode());
 
@@ -130,13 +132,21 @@ public class LogAspect {
         }
     }
 
+    private static final ThreadLocal<Object> threadLocal = new ThreadLocal<>();
+
     /**
      * 设置请求参数
      */
     private void setRequestData(JoinPoint joinPoint, SysLogObject sysLogObject, String[] excludeParams) {
+        //获取不到request对象 临时set  FIXME
+        sysLogObject.setRequestMethod(HttpMethod.GET.name());
         String requestMethod = sysLogObject.getRequestMethod();
+//        HttpServletRequest request = ServletUtils.getRequestAttributes().getRequest();
+//        HttpServletRequest request1 = ServletUtils.getRequest();
+        Object[] args = joinPoint.getArgs();
+        System.out.println(args);
         Map<String, String> paramMap = ServletUtils.getParamMap(ServletUtils.getRequest());
-        if (paramMap.isEmpty() && paramMap != null && requestMethod.equals(HttpMethod.PUT) && requestMethod.equals(HttpMethod.POST)) {
+        if (paramMap != null && paramMap.isEmpty() && requestMethod.equals(HttpMethod.PUT) && requestMethod.equals(HttpMethod.POST)) {
             String params = argsArraryToString(joinPoint.getArgs(), excludeParams);
             sysLogObject.setLogParam(params);
         } else {

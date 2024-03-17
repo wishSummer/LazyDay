@@ -1,9 +1,9 @@
 package io.github.wishsummer.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import io.github.wishsummer.domain.SysLogObject;
 import io.github.wishsummer.mapper.SysLogMapper;
 import io.github.wishsummer.service.SysLogService;
+import io.github.wishsummer.domain.SysLogObject;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,10 +15,6 @@ import org.springframework.stereotype.Service;
 public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLogObject>
         implements SysLogService {
 
-    @Override
-    public boolean save(SysLogObject entity) {
-        return super.save(entity);
-    }
 }
 
 

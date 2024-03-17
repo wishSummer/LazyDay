@@ -1,12 +1,12 @@
 package io.github.wishsummer.service;
 
 import io.github.wishsummer.constant.CacheConstants;
+import io.github.wishsummer.domain.SysLogObject;
 import io.github.wishsummer.enums.BusinessTypeEnum;
 import io.github.wishsummer.exception.ServiceException;
-import io.github.wishsummer.utils.SecurityUtils;
-import io.github.wishsummer.wishsummer.domain.SysLogObject;
 import io.github.wishsummer.model.LoginUser;
-import io.github.wishsummer.wishsummer.remote.RemoteLogService;
+import io.github.wishsummer.remote.RemoteLogService;
+import io.github.wishsummer.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

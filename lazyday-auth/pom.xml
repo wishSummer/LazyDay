@@ -24,6 +24,10 @@
       <groupId>io.github.wishsummer</groupId>
       <artifactId>lazyday-api</artifactId>
     </dependency>
+      <dependency>
+          <groupId>io.github.wishsummer</groupId>
+          <artifactId>lazyday-common-log</artifactId>
+      </dependency>
 
   </dependencies>
 

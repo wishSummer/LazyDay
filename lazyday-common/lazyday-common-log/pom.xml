@@ -7,19 +7,16 @@
         <groupId>io.github.wishsummer</groupId>
         <artifactId>lazyday</artifactId>
         <version>0.0.1</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>lazyday-common</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>lazyday-common-log</artifactId>
 
-    <description>
-        通用模块
-    </description>
-
-
-    <modules>
-        <module>lazyday-common-core</module>
-        <module>lazyday-common-log</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>io.github.wishsummer</groupId>
+            <artifactId>lazyday-api</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

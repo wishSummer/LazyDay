@@ -8,10 +8,10 @@ package io.github.wishsummer.constant;
  */
 public class ServiceNameConstants {
 
-    public static final String AUTH_SERVICE = "lazyday-service";
+    public static final String AUTH_SERVICE = "lazyDay-service";
 
-    public static final String SYSTEM_SERVICE = "lazyday-system";
+    public static final String SYSTEM_SERVICE = "lazyDay-system";
 
-    public static final String FAMILY_SERVICE = "lazyday-family";
+    public static final String FAMILY_SERVICE = "lazyDay-family";
 
 }

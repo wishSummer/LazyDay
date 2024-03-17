@@ -1,19 +1,27 @@
 package io.github.wishsummer.controller;
 
+import io.github.wishsummer.annotation.WebLog;
 import io.github.wishsummer.domain.Result;
-import io.github.wishsummer.domain.SysLogObject;
+import io.github.wishsummer.enums.BusinessTypeEnum;
 import io.github.wishsummer.service.SysLogService;
+import io.github.wishsummer.domain.SysLogObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("log")
+@RestController()
+@RequestMapping("log")
 public class SysLogController {
 
     private SysLogService service;
 
+    @GetMapping("/test")
+    @WebLog(title = "测试", businessType = BusinessTypeEnum.OTHER)
+    public Result test(String a) {
+        return Result.success();
+    }
+
     @PostMapping("/insert")
-    public Result insertLog(SysLogObject sysLogObject) {
+    public Result insertLog(@RequestBody SysLogObject sysLogObject) {
         if (service.save(sysLogObject)) {
             return Result.success();
         }

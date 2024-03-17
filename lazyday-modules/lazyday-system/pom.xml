@@ -26,7 +26,7 @@
         <!--        web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <!--        SpringCloud Loadbalancer-->
@@ -39,6 +39,12 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+
+        <!--        bootstrap-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
 
         <!--        mybatis-plus-->
@@ -56,10 +62,14 @@
         <!--        自身模块-->
         <dependency>
             <groupId>io.github.wishsummer</groupId>
-            <artifactId>lazyday-api</artifactId>
+            <artifactId>lazyday-common-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.wishsummer</groupId>
+            <artifactId>lazyday-common-log</artifactId>
         </dependency>
     </dependencies>
-
 
 
 </project>

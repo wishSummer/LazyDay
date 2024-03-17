@@ -1,7 +1,7 @@
-package io.github.wishsummer.wishsummer.remote.factory;
+package io.github.wishsummer.remote.factory;
 
 import io.github.wishsummer.domain.Result;
-import io.github.wishsummer.wishsummer.remote.RemoteUserService;
+import io.github.wishsummer.remote.RemoteUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;
