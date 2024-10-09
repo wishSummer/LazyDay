@@ -17,6 +17,7 @@ public class AuthController {
     @PostMapping("/login")
     public Result login(@RequestBody LoginForm form) {
         authService.login(form.getUsername(),form.getPassword());
+        // TODO 创建token
         return null;
     }
 

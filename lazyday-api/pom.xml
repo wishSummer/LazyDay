@@ -13,11 +13,13 @@
 
   <dependencies>
 
+
     <!--    项目模块-->
     <dependency>
       <groupId>io.github.wishsummer</groupId>
       <artifactId>lazyday-common-core</artifactId>
     </dependency>
+
   </dependencies>
 
 </project>

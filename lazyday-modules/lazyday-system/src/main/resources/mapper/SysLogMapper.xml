@@ -22,7 +22,7 @@
             <result property="logTime" column="log_time" jdbcType="TIMESTAMP"/>
             <result property="costTime" column="cost_time" jdbcType="BIGINT"/>
     </resultMap>
-
+<!--TODO error 解决-->
     <sql id="Base_Column_List">
         log_id,title,business_type,
         method,request_method,log_type,

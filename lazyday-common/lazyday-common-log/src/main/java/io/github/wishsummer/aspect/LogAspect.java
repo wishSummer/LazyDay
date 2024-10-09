@@ -3,16 +3,15 @@ package io.github.wishsummer.aspect;
 import com.alibaba.fastjson2.JSON;
 import io.github.wishsummer.annotation.WebLog;
 import io.github.wishsummer.domain.SysLogObject;
-import io.github.wishsummer.enums.BusinessTypeEnum;
 import io.github.wishsummer.filter.PropertyPreExcludeFilter;
 import io.github.wishsummer.remote.RemoteLogService;
 import io.github.wishsummer.utils.ServletUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
@@ -62,22 +60,20 @@ public class LogAspect {
         handleLog(joinPoint, webLog, e, null);
     }
 
-    protected void handleLog(final JoinPoint joinPoint, WebLog webLog, final Exception exc, Object result) {
+    protected void handleLog(final JoinPoint joinPoint, WebLog webLog, final Exception e, Object result) {
         try {
-            System.out.printf("注解", webLog);
             SysLogObject sysLogObject = new SysLogObject();
 //            操作访问结果状态
             sysLogObject.setStatus(0);
-//            请求地址 TODO 获取ip
-            sysLogObject.setLogIp("");
-//            operLog.setOperUrl(StringUtils.substring(ServletUtils.getRequest().getRequestURI(), 0, 255));
-//            sysLogObject.setLogUrl(ServletUtils.getRequest().getRequestURI());
+//            请求地址
+            sysLogObject.setLogIp(StringUtils.substring(ServletUtils.getRequest().getRequestURI(), 0, 255));
+            sysLogObject.setLogUrl(ServletUtils.getRequest().getRequestURI());
 //            用户信息 TODO 用户名
             sysLogObject.setLogName("");
-//            异常信息
-            if (exc != null) {
-//                operLog.setErrorMsg(StringUtils.substring(e.getMessage(), 0, 2000));
-                sysLogObject.setErrorMsg(exc.getMessage());
+            //            异常信息
+            if (e != null) {
+                sysLogObject.setErrorMsg(StringUtils.substring(e.getMessage(), 0, 2000));
+                sysLogObject.setErrorMsg(e.getMessage());
                 sysLogObject.setStatus(1);
             }
 
@@ -85,12 +81,10 @@ public class LogAspect {
             String className = joinPoint.getTarget().getClass().getName();
             String methodName = joinPoint.getSignature().getName();
             sysLogObject.setMethod(className + "." + methodName + "()");
-//            sysLogObject.setRequestMethod(ServletUtils.getRequest().getMethod());
-
-            sysLogObject.setBusinessType(BusinessTypeEnum.OTHER.getCode());
+            sysLogObject.setRequestMethod(ServletUtils.getRequest().getMethod());
 
             //设置注解信息
-            setAnnotationParam(joinPoint, sysLogObject, result);
+            setAnnotationParam(joinPoint, webLog, sysLogObject, result);
 
             //设置时间
             sysLogObject.setLogTime(LocalDateTime.now());
@@ -99,9 +93,8 @@ public class LogAspect {
             log.info("日志记录：{}", sysLogObject);
 
             remoteLogService.saveLog(sysLogObject);
-        } catch (Exception e) {
-            log.error("异常信息:{}", e.getMessage());
-            e.printStackTrace();
+        } catch (Exception exe) {
+            log.error("异常信息:{}", exe.getMessage());
         } finally {
             TIME_THREADLOCAL.remove();
         }
@@ -111,38 +104,31 @@ public class LogAspect {
     /**
      * 设置注解相关信息
      */
-    private void setAnnotationParam(JoinPoint joinPoint, SysLogObject sysLogObject, Object result) {
+    private void setAnnotationParam(JoinPoint joinPoint, WebLog webLog, SysLogObject sysLogObject, Object result) {
+        System.out.println(webLog);
 //        获取注解
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        Method method = methodSignature.getMethod();
-        WebLog annotation = method.getAnnotation(WebLog.class);
-        String[] excludeParams = annotation.excludeParams();
+        String[] excludeParams = webLog.excludeParams();
 
 //        设置数据
-        sysLogObject.setTitle(annotation.title());
-        sysLogObject.setBusinessType(annotation.businessType().getCode());
+        sysLogObject.setTitle(webLog.title());
+        sysLogObject.setBusinessType(webLog.businessType().getCode());
 
-        if (annotation.isSaveRequestData()) {
+        if (webLog.isSaveRequestData()) {
             setRequestData(joinPoint, sysLogObject, excludeParams);
         }
 
-        if (annotation.isSaveResponseData()) {
+        if (webLog.isSaveResponseData()) {
 //            operLog.setJsonResult(StringUtils.substring(JSON.toJSONString(jsonResult), 0, 2000));
             sysLogObject.setJsonResult(JSON.toJSONString(result));
         }
     }
 
-    private static final ThreadLocal<Object> threadLocal = new ThreadLocal<>();
 
     /**
      * 设置请求参数
      */
     private void setRequestData(JoinPoint joinPoint, SysLogObject sysLogObject, String[] excludeParams) {
-        //获取不到request对象 临时set  FIXME
-        sysLogObject.setRequestMethod(HttpMethod.GET.name());
         String requestMethod = sysLogObject.getRequestMethod();
-//        HttpServletRequest request = ServletUtils.getRequestAttributes().getRequest();
-//        HttpServletRequest request1 = ServletUtils.getRequest();
         Object[] args = joinPoint.getArgs();
         System.out.println(args);
         Map<String, String> paramMap = ServletUtils.getParamMap(ServletUtils.getRequest());

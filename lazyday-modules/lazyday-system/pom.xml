@@ -59,6 +59,13 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <!--        测试模块-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <!--        自身模块-->
         <dependency>
             <groupId>io.github.wishsummer</groupId>
@@ -68,6 +75,11 @@
         <dependency>
             <groupId>io.github.wishsummer</groupId>
             <artifactId>lazyday-common-log</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.wishsummer</groupId>
+            <artifactId>lazyday-api</artifactId>
         </dependency>
     </dependencies>
 
