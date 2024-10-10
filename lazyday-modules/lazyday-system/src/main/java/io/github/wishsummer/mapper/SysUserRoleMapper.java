@@ -1,7 +1,10 @@
 package io.github.wishsummer.mapper;
 
-import io.github.wishsummer.domain.SysUserRoleObject;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import io.github.wishsummer.domain.SysRoleObject;
+import io.github.wishsummer.domain.SysUserRoleObject;
+
+import java.util.List;
 
 /**
 * @author wishSummer
@@ -10,6 +13,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity io.github.wishsummer.domain.SysUserRoleObject
 */
 public interface SysUserRoleMapper extends BaseMapper<SysUserRoleObject> {
+
+    List<SysRoleObject> selectSysUserRoleObject(Integer userId);
 
 }
 

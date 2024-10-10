@@ -14,7 +14,7 @@ public class LoginUser {
 
     private List<SysRoleObject> roleObjectList;
 
-    private List<SysMenuObject> userObjectList;
+    private List<SysMenuObject> sysMenuObjects;
 
     private SysUserObject sysUserObject;
 

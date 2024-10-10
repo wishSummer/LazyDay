@@ -1,6 +1,7 @@
 package io.github.wishsummer;
 
 import io.github.wishsummer.domain.SysUserObject;
+import io.github.wishsummer.mapper.SysRoleMenuMapper;
 import io.github.wishsummer.mapper.SysUserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 class testTest {
 
     @Autowired
-    private SysUserMapper sysUserMapper;
+    SysUserMapper sysUserMapper;
+
+    @Autowired
+    SysRoleMenuMapper sysRoleMenuMapper;
 
 
     @Test
@@ -20,7 +24,7 @@ class testTest {
 
         System.out.println(sysUserObject);
 
+        System.out.println(sysRoleMenuMapper.selectMenusByRoleId(1L));
+
     }
-
-
 }

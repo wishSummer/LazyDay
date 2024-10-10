@@ -1,6 +1,7 @@
 package io.github.wishsummer.service;
 
 
+import io.github.wishsummer.domain.Result;
 import io.github.wishsummer.model.LoginUser;
 
 /**
@@ -8,5 +9,5 @@ import io.github.wishsummer.model.LoginUser;
  */
 public interface SysUserService {
 
-    LoginUser getUserInfo(String username);
+    Result<LoginUser> getUserInfo(String username);
 }

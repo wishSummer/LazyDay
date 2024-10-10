@@ -42,19 +42,20 @@ public class PasswordService {
     /**
      * 验证用户登录信息
      * 更新用户登录失败次数
+     *
      * @param loginUser 用户信息
-     * @param password 登陆输入的明文密码
+     * @param password  登陆输入的明文密码
      */
-    public void updateUserRetryCache(LoginUser loginUser, String password) {
-        Integer retryCount = getRetryCount(loginUser.getUsername());
-        if (!SecurityUtils.matchesPassword(password, loginUser.getPassword())) {
+    public void VerifyLogin(LoginUser loginUser, String password) {
+        Integer retryCount = getRetryCount(loginUser.getSysUserObject().getPassword());
+        if (!SecurityUtils.matchesPassword(password, loginUser.getSysUserObject().getPassword())) {
             retryCount = retryCount + 1;
             String errMsg = String.format("密码输入错误%S次", retryCount);
-            remoteLogService.saveLog(setSysLogObject(loginUser.getUsername(), 1, errMsg));
-            redisService.setCacheObject(getCacheKey(loginUser.getUsername()), retryCount, CacheConstants.PASSWORD_ERROR_WITTING_TIME.longValue(), TimeUnit.MINUTES);
+            remoteLogService.saveLog(setSysLogObject(loginUser.getSysUserObject().getUsername(), 1, errMsg));
+            redisService.setCacheObject(getCacheKey(loginUser.getSysUserObject().getUsername()), retryCount, CacheConstants.PASSWORD_ERROR_WITTING_TIME.longValue(), TimeUnit.MINUTES);
             throw new ServiceException("用户不存在或密码错误");
         }
-        clearLoginRetryCache(loginUser.getUsername());
+        clearLoginRetryCache(loginUser.getSysUserObject().getUsername());
     }
 
     /**

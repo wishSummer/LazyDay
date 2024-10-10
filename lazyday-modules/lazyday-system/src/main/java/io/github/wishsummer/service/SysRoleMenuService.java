@@ -1,7 +1,7 @@
 package io.github.wishsummer.service;
 
-import io.github.wishsummer.domain.SysRoleMenuObject;
 import com.baomidou.mybatisplus.extension.service.IService;
+import io.github.wishsummer.domain.SysRoleMenuObject;
 
 /**
 * @author wishSummer

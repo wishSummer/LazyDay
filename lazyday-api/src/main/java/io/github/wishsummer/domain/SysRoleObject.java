@@ -1,6 +1,9 @@
 package io.github.wishsummer.domain;
 
 
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 
 import java.util.Date;
@@ -11,12 +14,14 @@ import java.util.Date;
  *
  * @TableName sys_role
  */
+@TableName(value = "sys_role")
+@Data
 public class SysRoleObject implements Serializable {
 
     /**
      * 角色ID
      */
-    private Long roleId;
+    private Integer roleId;
     /**
      * 角色名称
      */

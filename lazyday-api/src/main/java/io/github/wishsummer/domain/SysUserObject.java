@@ -1,5 +1,8 @@
 package io.github.wishsummer.domain;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,16 +11,18 @@ import java.util.Date;
  *
  * @TableName sys_user
  */
+@TableName(value = "sys_user")
+@Data
 public class SysUserObject implements Serializable {
 
     /**
      * 用户ID
      */
-    private Long userId;
+    private Integer userId;
     /**
      * 用户账号
      */
-    private String userName;
+    private String username;
     /**
      * 用户昵称
      */

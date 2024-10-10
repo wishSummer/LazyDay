@@ -25,7 +25,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        user_id,user_name,nick_name,
+        user_id,username,nick_name,
         email,phonenumber,sex,
         avatar,password,status,
         del_flag,login_ip,login_date,

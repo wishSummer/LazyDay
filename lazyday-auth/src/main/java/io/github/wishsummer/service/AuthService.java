@@ -43,7 +43,7 @@ public class AuthService {
             throw new ServiceException("用户名不在指定范围");
         }
 
-        //TODO IP黑名单拦截
+        //TODO IP黑名单拦截 未选择白名单存放方式
         IpUtils.getIpAddr();
         Object blackStr = redisService.getCacheObject(CacheConstants.SYS_LOGIN_BLACKIPLIST);
         if (blackStr instanceof String && IpUtils.isMatchedIp((String) blackStr, IpUtils.getIpAddr())) {
@@ -66,8 +66,12 @@ public class AuthService {
         }
         LoginUser loginUser = userInfoResult.getData();
 
-        // 验证用户登录信息，更新用户登录尝试次数 TODO 临时挂参loginUser，后续修改为内部user对象参数
-        passwordService.updateUserRetryCache(loginUser, password);
+        // 验证账号密码，更新用户登录尝试次数
+        passwordService.VerifyLogin(loginUser, password);
+
+        remoteLogService.saveLog(passwordService.setSysLogObject(username, HttpStatus.SUCCESS.getCode(), "用户登录成功"));
+
+        // TODO 生成用户token
 
 
     }

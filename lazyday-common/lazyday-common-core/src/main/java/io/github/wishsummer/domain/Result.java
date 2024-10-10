@@ -30,6 +30,10 @@ public class Result<T> implements Serializable {
         return build(data, null, message);
     }
 
+    public static <T> Result<T> success(T data) {
+        return build(data, null, null);
+    }
+
     public static <T> Result<T> error(HttpStatus code) {
         return build(null, code, null);
     }

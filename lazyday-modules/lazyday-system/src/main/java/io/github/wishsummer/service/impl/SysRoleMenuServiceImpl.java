@@ -2,8 +2,8 @@ package io.github.wishsummer.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.github.wishsummer.domain.SysRoleMenuObject;
-import io.github.wishsummer.service.SysRoleMenuService;
 import io.github.wishsummer.mapper.SysRoleMenuMapper;
+import io.github.wishsummer.service.SysRoleMenuService;
 import org.springframework.stereotype.Service;
 
 /**

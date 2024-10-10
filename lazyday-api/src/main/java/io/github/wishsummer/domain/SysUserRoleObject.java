@@ -1,6 +1,9 @@
 package io.github.wishsummer.domain;
 
 
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 
 
@@ -9,15 +12,17 @@ import java.io.Serializable;
  *
  * @TableName sys_user_role
  */
+@TableName(value = "sys_user_role")
+@Data
 public class SysUserRoleObject implements Serializable {
 
     /**
      * 用户ID
      */
-    private Long userId;
+    private Integer userId;
     /**
      * 角色ID
      */
-    private Long roleId;
+    private Integer roleId;
 
 }

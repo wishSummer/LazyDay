@@ -1,7 +1,7 @@
 package io.github.wishsummer.service;
 
-import io.github.wishsummer.domain.SysUserRoleObject;
 import com.baomidou.mybatisplus.extension.service.IService;
+import io.github.wishsummer.domain.SysUserRoleObject;
 
 /**
 * @author wishSummer
@@ -9,5 +9,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2024-10-09 20:51:46
 */
 public interface SysUserRoleService extends IService<SysUserRoleObject> {
+
 
 }
