@@ -34,7 +34,7 @@ public class SysUserObject implements Serializable {
     /**
      * 手机号码
      */
-    private String phonenumber;
+    private String phoneNumber;
     /**
      * 用户性别（0男 1女 2未知）
      */

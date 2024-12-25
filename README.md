@@ -11,12 +11,22 @@
 - 
 ## 任务列表
 - security相关
-  - 登录、注册
-  - jwt无状态认证、授权
+  - 登录、注册 √
+  - jwt无状态认证、授权 √
   - 角色权限访问控制
   - 限制用户同时在线数量
   - 跨域相关
-
+- 完善工具包
+    - 数据传输：ftp、sftp、socket
+    - 加解密：DES、AES
+- 部署相关
+  - 打包docker镜像
+  - 搭建jenkins、docker镜像仓库
+  - 搭建gitlab私库、或使用github仓库配置jenkins
+- 进阶扩展
+  - Elasticsearch
+- 测试相关
+  - 搭建sftp、ftp测试工具类
 
 ## 模块功能
   - api 访问接口

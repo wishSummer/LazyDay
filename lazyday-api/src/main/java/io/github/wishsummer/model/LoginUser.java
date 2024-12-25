@@ -12,10 +12,14 @@ public class LoginUser {
 
     private String token;
 
+    private Long loginTime;
+
     private List<SysRoleObject> roleObjectList;
 
     private List<SysMenuObject> sysMenuObjects;
 
     private SysUserObject sysUserObject;
+
+    private Long expireTime;
 
 }

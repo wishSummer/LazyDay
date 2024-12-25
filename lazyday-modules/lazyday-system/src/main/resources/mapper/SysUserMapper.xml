@@ -5,11 +5,11 @@
 <mapper namespace="io.github.wishsummer.mapper.SysUserMapper">
 
     <resultMap id="BaseResultMap" type="io.github.wishsummer.domain.SysUserObject">
-            <id property="userId" column="user_id" jdbcType="BIGINT"/>
-            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <id property="userid" column="user_id" jdbcType="BIGINT"/>
+            <result property="username" column="user_name" jdbcType="VARCHAR"/>
             <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>
-            <result property="phonenumber" column="phonenumber" jdbcType="VARCHAR"/>
+            <result property="phoneNumber" column="phonenumber" jdbcType="VARCHAR"/>
             <result property="sex" column="sex" jdbcType="CHAR"/>
             <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
             <result property="password" column="password" jdbcType="VARCHAR"/>

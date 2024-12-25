@@ -6,3 +6,6 @@ spring:
         file-extension: yml
   application:
     name: lazyday-gateway
+  profiles:
+    # 环境配置
+    active: dev

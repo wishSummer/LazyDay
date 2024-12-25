@@ -34,6 +34,10 @@ public class Result<T> implements Serializable {
         return build(data, null, null);
     }
 
+    public static <T> Result<T> error() {
+        return build(null, HttpStatus.INTERNAL_SERVER_ERROR, null);
+    }
+
     public static <T> Result<T> error(HttpStatus code) {
         return build(null, code, null);
     }

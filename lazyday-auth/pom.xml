@@ -2,33 +2,63 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>io.github.wishsummer</groupId>
-    <artifactId>lazyday</artifactId>
-    <version>0.0.1</version>
-  </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.github.wishsummer</groupId>
+        <artifactId>lazyday</artifactId>
+        <version>0.0.1</version>
+    </parent>
 
-  <artifactId>lazyday-auth</artifactId>
+    <artifactId>lazyday-auth</artifactId>
 
-  <dependencies>
+    <dependencies>
 
-    <!--        bootstap-->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-bootstrap</artifactId>
-    </dependency>
+        <!--        bootstap-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
 
-    <!--    项目模块-->
-    <dependency>
-      <groupId>io.github.wishsummer</groupId>
-      <artifactId>lazyday-api</artifactId>
-    </dependency>
-      <dependency>
-          <groupId>io.github.wishsummer</groupId>
-          <artifactId>lazyday-common-log</artifactId>
-      </dependency>
+<!--        SpringCloud Feign在Hoxton.M2 RELEASED版本之后不再使用ribbon=-->
+<!--        而是使用spring-cloud-loadbalancer，所以在不引入spring-cloud-loadbalancer情况下会报错-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-loadbalancer</artifactId>
+        </dependency>
+        <!--    nacos-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
 
-  </dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--    spring web-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-web</artifactId>-->
+<!--        </dependency>-->
+
+
+        <!-- Jwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>
+
+
+        <!--    项目模块-->
+        <dependency>
+            <groupId>io.github.wishsummer</groupId>
+            <artifactId>lazyday-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.wishsummer</groupId>
+            <artifactId>lazyday-common-log</artifactId>
+        </dependency>
+
+    </dependencies>
 
 </project>

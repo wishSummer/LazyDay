@@ -20,13 +20,14 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
+        <apche.commons.net.version>3.9.0</apche.commons.net.version>
         <lazyday.version>0.0.1</lazyday.version>
         <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
         <spring-cloud.version>2022.0.0</spring-cloud.version>
         <spring-boot.version>3.0.2</spring-boot.version>
         <mybatis-plus.version>3.5.4.1</mybatis-plus.version>
         <fastjson.version>2.0.42</fastjson.version>
+        <jjwt.version>0.9.1</jjwt.version>
     </properties>
 
     <dependencyManagement>
@@ -68,6 +69,14 @@
                 <version>${fastjson.version}</version>
             </dependency>
 
+            <!--            工具类依赖-->
+            <dependency>
+                <groupId>commons-net</groupId>
+                <artifactId>commons-net</artifactId>
+                <scope>provided</scope>
+                <version>${apche.commons.net.version}</version>
+            </dependency>
+
             <!--            项目模块-->
             <dependency>
                 <groupId>io.github.wishsummer</groupId>
@@ -98,6 +107,14 @@
                 <artifactId>lazyday-api</artifactId>
                 <version>${lazyday.version}</version>
             </dependency>
+
+            <!-- JWT -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>

@@ -1,6 +1,7 @@
 package io.github.wishsummer.service;
 
 import io.github.wishsummer.constant.CacheConstants;
+import io.github.wishsummer.constant.Constants;
 import io.github.wishsummer.domain.SysLogObject;
 import io.github.wishsummer.enums.BusinessTypeEnum;
 import io.github.wishsummer.exception.ServiceException;
@@ -32,10 +33,10 @@ public class PasswordService {
      */
     public void checkRetryCount(String username) {
         Integer retryCount = getRetryCount(username);
-        if (retryCount >= CacheConstants.LOGIN_ERROR_RETRY_COUNT) {
-            String errMsg = String.format("密码输入错误%S次，账户锁定%s分钟", CacheConstants.LOGIN_ERROR_RETRY_COUNT, CacheConstants.PASSWORD_ERROR_WITTING_TIME);
-            remoteLogService.saveLog(setSysLogObject(username, 1, errMsg));
-            throw new ServiceException("密码输入错误" + CacheConstants.LOGIN_ERROR_RETRY_COUNT + "次，账户锁定" + CacheConstants.PASSWORD_ERROR_WITTING_TIME + "分钟");
+        if (retryCount >= Constants.LOGIN_ERROR_RETRY_COUNT) {
+            String errMsg = String.format("密码输入错误%S次，账户锁定%s分钟", Constants.LOGIN_ERROR_RETRY_COUNT, Constants.PASSWORD_ERROR_WITTING_TIME);
+            remoteLogService.saveLog(getSysLogObject(username, 1, errMsg));
+            throw new ServiceException("密码输入错误" + Constants.LOGIN_ERROR_RETRY_COUNT + "次，账户锁定" + Constants.PASSWORD_ERROR_WITTING_TIME + "分钟");
         }
     }
 
@@ -51,8 +52,8 @@ public class PasswordService {
         if (!SecurityUtils.matchesPassword(password, loginUser.getSysUserObject().getPassword())) {
             retryCount = retryCount + 1;
             String errMsg = String.format("密码输入错误%S次", retryCount);
-            remoteLogService.saveLog(setSysLogObject(loginUser.getSysUserObject().getUsername(), 1, errMsg));
-            redisService.setCacheObject(getCacheKey(loginUser.getSysUserObject().getUsername()), retryCount, CacheConstants.PASSWORD_ERROR_WITTING_TIME.longValue(), TimeUnit.MINUTES);
+            remoteLogService.saveLog(getSysLogObject(loginUser.getSysUserObject().getUsername(), 1, errMsg));
+            redisService.setCacheObject(getCacheKey(loginUser.getSysUserObject().getUsername()), retryCount, Constants.PASSWORD_ERROR_WITTING_TIME.longValue(), TimeUnit.MINUTES);
             throw new ServiceException("用户不存在或密码错误");
         }
         clearLoginRetryCache(loginUser.getSysUserObject().getUsername());
@@ -64,7 +65,7 @@ public class PasswordService {
      * @param username 用户名
      */
     public String getCacheKey(String username) {
-        return CacheConstants.PASSWORD_ERROR_CONT_KEY + username;
+        return CacheConstants.PASSWORD_ERROR_COUNT_KEY + username;
     }
 
     /**
@@ -94,7 +95,7 @@ public class PasswordService {
      * @param logStatus  状态码 1异常；0正常；
      * @param logMessage
      */
-    public SysLogObject setSysLogObject(String username, int logStatus, String logMessage) {
+    public SysLogObject getSysLogObject(String username, int logStatus, String logMessage) {
         SysLogObject sysLogObject = new SysLogObject();
         sysLogObject.setMethod("AuthService.login()");
         sysLogObject.setRequestMethod("POST");

@@ -13,11 +13,11 @@ USE lazyday;
 drop table if exists sys_user;
 create table sys_user
 (
-    user_id     bigint(20)  not null auto_increment comment '用户ID',
+    user_id     int(20)  not null auto_increment comment '用户ID',
     user_name   varchar(30) not null comment '用户账号',
     nick_name   varchar(30) not null comment '用户昵称',
     email       varchar(50)  default '' comment '用户邮箱',
-    phonenumber varchar(11)  default '' comment '手机号码',
+    phone_number varchar(11)  default '' comment '手机号码',
     sex         char(1)      default '0' comment '用户性别（0男 1女 2未知）',
     avatar      varchar(100) default '' comment '头像地址',
     password    varchar(100) default '' comment '密码',
@@ -40,7 +40,7 @@ create table sys_user
 drop table if exists sys_role;
 create table sys_role
 (
-    role_id             bigint(20)   not null auto_increment comment '角色ID',
+    role_id             int(20)   not null auto_increment comment '角色ID',
     role_name           varchar(30)  not null comment '角色名称',
     role_key            varchar(100) not null comment '角色英文名称',
     role_sort           int(4)       not null comment '显示顺序',
@@ -62,7 +62,7 @@ create table sys_role
 drop table if exists sys_menu;
 create table sys_menu
 (
-    menu_id     bigint(20)  not null auto_increment comment '菜单ID',
+    menu_id     int(20)  not null auto_increment comment '菜单ID',
     menu_name   varchar(50) not null comment '菜单名称',
     parent_id   bigint(20)   default 0 comment '父菜单ID',
     order_num   int(4)       default 0 comment '显示顺序',
@@ -91,8 +91,8 @@ create table sys_menu
 drop table if exists sys_user_role;
 create table sys_user_role
 (
-    user_id bigint(20) not null comment '用户ID',
-    role_id bigint(20) not null comment '角色ID',
+    user_id int(20) not null comment '用户ID',
+    role_id int(20) not null comment '角色ID',
     primary key (user_id, role_id)
 ) engine = innodb comment = '用户和角色关联表';
 
@@ -102,8 +102,8 @@ create table sys_user_role
 drop table if exists sys_role_menu;
 create table sys_role_menu
 (
-    role_id bigint(20) not null comment '角色ID',
-    menu_id bigint(20) not null comment '菜单ID',
+    role_id int(20) not null comment '角色ID',
+    menu_id int(20) not null comment '菜单ID',
     primary key (role_id, menu_id)
 ) engine = innodb comment = '角色和菜单关联表';
 
@@ -113,7 +113,7 @@ create table sys_role_menu
 drop table if exists sys_log_log;
 create table sys_log
 (
-    log_id         bigint(20) not null auto_increment comment '日志主键',
+    log_id         int(20) not null auto_increment comment '日志主键',
     title          varchar(50)   default '' comment '模块标题',
     business_type  int(2)        default 0 comment '业务类型（0其它 1新增 2修改 3删除）',
     method         varchar(100)  default '' comment '方法名称',

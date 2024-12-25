@@ -18,12 +18,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserObject>
-        implements IService<SysUserObject>, SysUserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserObject> implements IService<SysUserObject>, SysUserService {
 
     private SysRoleMenuMapper sysRoleMenuMapper;
 
     private SysUserRoleMapper sysUserRoleMapper;
+
+    private SysUserMapper sysUserMapper;
 
 
     @Override
@@ -41,6 +42,15 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserObject
         return Result.success(loginUser);
     }
 
+    @Override
+    public Result register(SysUserObject userObjectt) {
+        int insert = sysUserMapper.insert(userObjectt);
+        if (insert > 0) {
+            return Result.success();
+        }
+        return Result.error();
+    }
+
     @Autowired
     public void setSysRoleMenuMapper(SysRoleMenuMapper sysRoleMenuMapper) {
         this.sysRoleMenuMapper = sysRoleMenuMapper;
@@ -49,5 +59,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserObject
     @Autowired
     public void setSysUserRoleMapper(SysUserRoleMapper sysUserRoleMapper) {
         this.sysUserRoleMapper = sysUserRoleMapper;
+    }
+
+    @Autowired
+    public void setSysUserMapper(SysUserMapper sysUserMapper) {
+        this.sysUserMapper = sysUserMapper;
     }
 }

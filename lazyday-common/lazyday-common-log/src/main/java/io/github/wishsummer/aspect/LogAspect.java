@@ -126,13 +126,14 @@ public class LogAspect {
 
     /**
      * 设置请求参数
+     * TODO
      */
     private void setRequestData(JoinPoint joinPoint, SysLogObject sysLogObject, String[] excludeParams) {
         String requestMethod = sysLogObject.getRequestMethod();
         Object[] args = joinPoint.getArgs();
         System.out.println(args);
         Map<String, String> paramMap = ServletUtils.getParamMap(ServletUtils.getRequest());
-        if (paramMap != null && paramMap.isEmpty() && requestMethod.equals(HttpMethod.PUT) && requestMethod.equals(HttpMethod.POST)) {
+        if (paramMap.isEmpty() && requestMethod.equals(HttpMethod.PUT.name()) && requestMethod.equals(HttpMethod.POST.name())) {
             String params = argsArraryToString(joinPoint.getArgs(), excludeParams);
             sysLogObject.setLogParam(params);
         } else {
