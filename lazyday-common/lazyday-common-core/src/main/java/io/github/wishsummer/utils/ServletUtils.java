@@ -1,12 +1,14 @@
 package io.github.wishsummer.utils;
 
 import io.github.wishsummer.constant.Constants;
+import io.github.wishsummer.exception.ServiceException;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -18,9 +20,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 public class ServletUtils {
 
-    private static final Logger log = LoggerFactory.getLogger(ServletUtils.class);
 
     public static ServletRequestAttributes getRequestAttributes() {
         try {
@@ -39,16 +41,24 @@ public class ServletUtils {
             ServletRequestAttributes requestAttributes = getRequestAttributes();
             return requestAttributes == null ? null : requestAttributes.getRequest();
         } catch (Exception e) {
-            log.error("getRequestError:{}", e);
+            log.error("getRequestError:", e);
             return null;
+        }
+    }
+
+    public static Map<String, Object> getTokenInfo() {
+        try {
+            Claims body = Jwts.parser().setSigningKey(Constants.SECRET).parseClaimsJws(ServletUtils.getRequest().getHeader(Constants.AUTHENTICATION)).getBody();
+            return body;
+        } catch (Exception e) {
+            throw new ServiceException("权限获取失败，请重新登录");
         }
     }
 
     /**
      * 根据request获取请求token
      */
-    public static String getToken(HttpServletRequest request)
-    {
+    public static String getToken(HttpServletRequest request) {
         // 从header获取token标识
         String token = request.getHeader(Constants.AUTHENTICATION);
         return replaceTokenPrefix(token);
@@ -57,11 +67,9 @@ public class ServletUtils {
     /**
      * 裁剪token前缀
      */
-    public static String replaceTokenPrefix(String token)
-    {
+    public static String replaceTokenPrefix(String token) {
         // 如果前端设置了令牌前缀，则裁剪掉前缀
-        if (StringUtils.isNotEmpty(token) && token.startsWith(Constants.PREFIX))
-        {
+        if (StringUtils.isNotEmpty(token) && token.startsWith(Constants.PREFIX)) {
             token = token.replaceFirst(Constants.PREFIX, "");
         }
         return token;

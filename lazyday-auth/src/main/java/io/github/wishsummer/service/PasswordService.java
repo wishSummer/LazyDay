@@ -61,7 +61,6 @@ public class PasswordService {
 
     /**
      * 生成用户缓存键值
-     *
      * @param username 用户名
      */
     public String getCacheKey(String username) {

@@ -93,7 +93,7 @@ public class AuthService {
             remoteLogService.saveLog(passwordService.getSysLogObject(null, 0, "登录用户不存在"));
             throw new ServiceException("登录用户" + username + "不存在");
         }
-        if (Result.SUCCESS != userInfoResult.getCode()) {
+        if (Result.SUCCESS != userInfoResult.getStatus()) {
             throw new ServiceException(userInfoResult.getMessage());
         }
         LoginUser loginUser = userInfoResult.getData();
@@ -140,7 +140,7 @@ public class AuthService {
         sysUserObject.setUsername(registerBody.getUsername());
         sysUserObject.setPassword(registerBody.getPassword());
         sysUserObject.setNickName(StringUtils.defaultIfBlank(registerBody.getNickName(), registerBody.getUsername()));
-        if (!remoteUserService.registerUser(sysUserObject).getCode().equals(HttpStatus.SUCCESS)) {
+        if (!remoteUserService.registerUser(sysUserObject).getStatus().equals(HttpStatus.SUCCESS)) {
             throw new ServiceException("注册失败");
         }
 

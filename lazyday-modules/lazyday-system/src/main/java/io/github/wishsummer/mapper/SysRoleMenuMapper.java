@@ -1,8 +1,9 @@
 package io.github.wishsummer.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import io.github.wishsummer.domain.SysMenuObject;
 import io.github.wishsummer.domain.SysRoleMenuObject;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenuObject> {
 
-    List<SysMenuObject> selectMenusByRoleId(List<Integer> roleId);
+    List<SysMenuObject> selectMenusByRoleId(@Param("roleIds")List<Integer> roleIds);
 }
 
 

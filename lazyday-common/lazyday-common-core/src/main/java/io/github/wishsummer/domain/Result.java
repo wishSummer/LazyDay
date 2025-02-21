@@ -12,7 +12,7 @@ public class Result<T> implements Serializable {
 
     public static final HttpStatus SUCCESS = HttpStatus.SUCCESS;
 
-    private HttpStatus code;
+    private HttpStatus status;
 
     private String message;
 
@@ -27,11 +27,11 @@ public class Result<T> implements Serializable {
     }
 
     public static <T> Result<T> success(T data, String message) {
-        return build(data, null, message);
+        return build(data, SUCCESS, message);
     }
 
     public static <T> Result<T> success(T data) {
-        return build(data, null, null);
+        return build(data, SUCCESS, null);
     }
 
     public static <T> Result<T> error() {
@@ -54,7 +54,7 @@ public class Result<T> implements Serializable {
     private static <T> Result<T> build(T data, HttpStatus code, String message) {
         Result<T> result = new Result<>();
         result.setData(data);
-        result.setCode(code);
+        result.setStatus(code);
         result.setMessage(message);
         return result;
     }
