@@ -1,7 +1,7 @@
-package io.github.wishsummer.service;
+package io.github.wishsummer.common.core.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import io.github.wishsummer.domain.SysUserRoleObject;
+import io.github.wishsummer.api.domain.SysUserRoleObject;
 
 /**
 * @author wishSummer

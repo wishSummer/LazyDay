@@ -1,9 +1,9 @@
 package io.github.wishsummer.controller;
 
-import io.github.wishsummer.domain.Result;
-import io.github.wishsummer.domain.SysUserObject;
-import io.github.wishsummer.model.LoginUser;
-import io.github.wishsummer.service.SysUserService;
+import io.github.wishsummer.api.domain.SysUserObject;
+import io.github.wishsummer.api.model.LoginUser;
+import io.github.wishsummer.common.core.domain.Result;
+import io.github.wishsummer.common.core.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

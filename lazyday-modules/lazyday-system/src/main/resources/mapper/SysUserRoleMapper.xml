@@ -12,7 +12,7 @@
     <sql id="Base_Column_List">
         user_id,role_id
     </sql>
-    <select id="selectSysUserRoleObject" resultType="io.github.wishsummer.domain.SysRoleObject">
+    <select id="selectSysUserRoleObject" resultType="io.github.wishsummer.api.domain.SysRoleObject">
         select <include refid="io.github.wishsummer.mapper.SysRoleMapper.Base_Column_List"/> from sys_role sy ,sys_user_role sur on sy.role_id = sur.role_id where sur.user_id = #{userId}
     </select>
 </mapper>

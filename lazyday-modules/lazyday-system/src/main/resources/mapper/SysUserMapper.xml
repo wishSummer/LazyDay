@@ -32,7 +32,7 @@
         create_by,create_time,update_by,
         update_time,remark
     </sql>
-    <select id="selectByUsername" resultType="io.github.wishsummer.domain.SysUserObject">
+    <select id="selectByUsername" resultType="io.github.wishsummer.api.domain.SysUserObject">
         select
         <include refid="Base_Column_List"/>
         from sys_user where username = #{username}

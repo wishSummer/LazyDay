@@ -1,8 +1,8 @@
 package io.github.wishsummer.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import io.github.wishsummer.domain.SysRoleObject;
-import io.github.wishsummer.domain.SysUserRoleObject;
+import io.github.wishsummer.api.domain.SysRoleObject;
+import io.github.wishsummer.api.domain.SysUserRoleObject;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
-package io.github.wishsummer.service;
+package io.github.wishsummer.common.core.service;
 
 
-import io.github.wishsummer.domain.Result;
-import io.github.wishsummer.domain.SysUserObject;
-import io.github.wishsummer.model.LoginUser;
+import io.github.wishsummer.api.domain.SysUserObject;
+import io.github.wishsummer.api.model.LoginUser;
+import io.github.wishsummer.common.core.domain.Result;
 
 /**
  * 用户相关操作

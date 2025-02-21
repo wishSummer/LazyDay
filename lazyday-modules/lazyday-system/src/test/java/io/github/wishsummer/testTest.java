@@ -1,6 +1,6 @@
 package io.github.wishsummer;
 
-import io.github.wishsummer.domain.SysUserObject;
+import io.github.wishsummer.api.domain.SysUserObject;
 import io.github.wishsummer.mapper.SysRoleMenuMapper;
 import io.github.wishsummer.mapper.SysUserMapper;
 import org.junit.jupiter.api.Test;

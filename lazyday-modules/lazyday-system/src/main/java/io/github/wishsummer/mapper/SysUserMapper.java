@@ -1,7 +1,7 @@
 package io.github.wishsummer.mapper;
 
-import io.github.wishsummer.domain.SysUserObject;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import io.github.wishsummer.api.domain.SysUserObject;
 
 /**
 * @author wishSummer

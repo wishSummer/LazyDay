@@ -1,21 +1,22 @@
-package io.github.wishsummer.service.impl;
+package io.github.wishsummer.common.core.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import io.github.wishsummer.domain.Result;
-import io.github.wishsummer.domain.SysMenuObject;
-import io.github.wishsummer.domain.SysRoleObject;
-import io.github.wishsummer.domain.SysUserObject;
+import io.github.wishsummer.api.domain.SysMenuObject;
+import io.github.wishsummer.api.domain.SysRoleObject;
+import io.github.wishsummer.api.domain.SysUserObject;
+import io.github.wishsummer.api.model.LoginUser;
+import io.github.wishsummer.common.core.domain.Result;
+import io.github.wishsummer.common.core.service.SysUserService;
 import io.github.wishsummer.mapper.SysRoleMenuMapper;
 import io.github.wishsummer.mapper.SysUserMapper;
 import io.github.wishsummer.mapper.SysUserRoleMapper;
-import io.github.wishsummer.model.LoginUser;
-import io.github.wishsummer.service.SysUserService;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserObject> implements IService<SysUserObject>, SysUserService {
@@ -36,7 +37,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserObject
         LoginUser loginUser = new LoginUser();
         loginUser.setSysUserObject(sysUserObject);
         List<SysRoleObject> sysRoleObjects = sysUserRoleMapper.selectSysUserRoleObject(sysUserObject.getUserId());
-        List<SysMenuObject> sysMenuObjects = sysRoleMenuMapper.selectMenusByRoleId(sysRoleObjects.stream().map(SysRoleObject::getRoleId).toList());
+        List<SysMenuObject> sysMenuObjects = sysRoleMenuMapper.selectMenusByRoleId(sysRoleObjects.stream().map(SysRoleObject::getRoleId).collect(Collectors.toList()));
         loginUser.setRoleObjectList(sysRoleObjects);
         loginUser.setSysMenuObjects(sysMenuObjects);
         return Result.success(loginUser);
