@@ -7,19 +7,27 @@ import io.github.wishsummer.common.core.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
+
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class SysUserController {
 
     private SysUserService sysUserService;
 
-    @GetMapping("/{userId}")
+    @GetMapping("/info/{userId}")
     public Result<LoginUser> login(@PathVariable("userId") String userId) {
-        return Result.success();
+        return sysUserService.getUser(userId);
+    }
+
+    @GetMapping("/getInfo")
+    public Result<Map<String, Object>> getInfo() {
+        return sysUserService.getUserInfo();
     }
 
     @PostMapping("/register")
-    public Result register(@RequestBody SysUserObject userObjectt){
+    public Result register(@RequestBody SysUserObject userObjectt) {
         return sysUserService.register(userObjectt);
     }
 

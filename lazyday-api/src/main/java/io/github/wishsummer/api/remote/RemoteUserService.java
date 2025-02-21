@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient(contextId = "remoteUserService", value = ServiceNameConstants.SYSTEM_SERVICE)
 public interface RemoteUserService {
 
-    @GetMapping("/user/{username}")
+    @GetMapping("/user/info/{username}")
     Result<LoginUser> getUserInfo(@PathVariable("username") String username);
 
     @PostMapping("/user/register")

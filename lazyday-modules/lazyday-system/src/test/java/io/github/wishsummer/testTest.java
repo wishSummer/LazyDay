@@ -24,7 +24,7 @@ class testTest {
 
         System.out.println(sysUserObject);
 
-        System.out.println(sysRoleMenuMapper.selectMenusByRoleId(1L));
+//        System.out.println(sysRoleMenuMapper.selectMenusByRoleId());
 
     }
 }

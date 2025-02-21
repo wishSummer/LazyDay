@@ -4,15 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.github.wishsummer.mapper.SysUserRoleMapper">
 
-    <resultMap id="BaseResultMap" type="io.github.wishsummer.domain.SysUserRoleObject">
-            <id property="userId" column="user_id" jdbcType="BIGINT"/>
-            <id property="roleId" column="role_id" jdbcType="BIGINT"/>
+    <resultMap id="BaseResultMap" type="io.github.wishsummer.api.domain.SysUserRoleObject">
+        <id property="userId" column="user_id" jdbcType="BIGINT"/>
+        <id property="roleId" column="role_id" jdbcType="BIGINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         user_id,role_id
     </sql>
     <select id="selectSysUserRoleObject" resultType="io.github.wishsummer.api.domain.SysRoleObject">
-        select <include refid="io.github.wishsummer.mapper.SysRoleMapper.Base_Column_List"/> from sys_role sy ,sys_user_role sur on sy.role_id = sur.role_id where sur.user_id = #{userId}
+        select
+        <include refid="io.github.wishsummer.mapper.SysRoleMapper.Base_Column_List"/>
+        from sys_role where role_id = (select role_id from  sys_user_role where user_id = #{userId})
     </select>
 </mapper>

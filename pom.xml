@@ -28,6 +28,8 @@
         <mybatis-plus.version>3.5.4.1</mybatis-plus.version>
         <fastjson.version>2.0.42</fastjson.version>
         <jjwt.version>0.9.1</jjwt.version>
+        <jwtapi.version>2.3.1</jwtapi.version>
+        <jwtruntime.version>2.3.6</jwtruntime.version>
     </properties>
 
     <dependencyManagement>
@@ -77,6 +79,17 @@
                 <version>${apche.commons.net.version}</version>
             </dependency>
 
+<!--            jwt-->
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jwtapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-runtime</artifactId>
+                <version>${jwtruntime.version}</version>
+            </dependency>
             <!--            项目模块-->
             <dependency>
                 <groupId>io.github.wishsummer</groupId>

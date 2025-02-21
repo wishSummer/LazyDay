@@ -13,6 +13,9 @@
         role_id,menu_id
     </sql>
     <select id="selectMenusByRoleId" resultType="io.github.wishsummer.api.domain.SysMenuObject">
-        select * from sys_role_menu srm inner join sys_menu sm on srm.menu_id = sm.menu_id where srm.role_id in #{roleId}
+        select * from sys_role_menu srm inner join sys_menu sm on srm.menu_id = sm.menu_id where srm.role_id in
+        <foreach collection="roleIds" item="roleId" open="(" separator="," close=")">
+            #{roleId}
+        </foreach>
     </select>
 </mapper>

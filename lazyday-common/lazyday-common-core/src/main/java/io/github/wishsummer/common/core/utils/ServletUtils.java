@@ -6,6 +6,7 @@ import io.github.wishsummer.common.core.domain.Result;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +27,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 public class ServletUtils {
 
-    private static final Logger log = LoggerFactory.getLogger(ServletUtils.class);
 
     public static ServletRequestAttributes getRequestAttributes() {
         try {
@@ -47,8 +48,17 @@ public class ServletUtils {
             ServletRequestAttributes requestAttributes = getRequestAttributes();
             return requestAttributes == null ? null : requestAttributes.getRequest();
         } catch (Exception e) {
-            log.error("getRequestError:{}", e);
+            log.error("getRequestError:", e);
             return null;
+        }
+    }
+
+    public static Map<String, Object> getTokenInfo() {
+        try {
+            Claims body = Jwts.parser().setSigningKey(Constants.SECRET).parseClaimsJws(ServletUtils.getRequest().getHeader(Constants.AUTHENTICATION)).getBody();
+            return body;
+        } catch (Exception e) {
+            throw new ServiceException("权限获取失败，请重新登录");
         }
     }
 
@@ -57,7 +67,7 @@ public class ServletUtils {
      */
     public static String getToken(HttpServletRequest request) {
         // 从header获取token标识
-        String token = request.getHeaders(Constants.AUTHENTICATION);
+        String token = request.getHeader(Constants.AUTHENTICATION);
         return replaceTokenPrefix(token);
     }
 
