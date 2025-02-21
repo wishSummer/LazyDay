@@ -33,8 +33,11 @@
   - auth 认证登录
   - common
     - core 核心包
-    - log 记录日志
+    - log 记录日志 √
   - gateway 网关过滤
+    - authFilter 过滤无令牌请求 √
+    - xssFilter xss 数据安全过滤 √
   - modules （实际数据操作模块）
     - family 家庭功能模块
     - system 系统功能模块（用户、权限等基础功能）
+      - 权限管理
