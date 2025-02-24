@@ -1,8 +1,8 @@
 package io.github.wishsummer;
 
 import io.github.wishsummer.api.domain.SysUserObject;
-import io.github.wishsummer.mapper.SysRoleMenuMapper;
-import io.github.wishsummer.mapper.SysUserMapper;
+import io.github.wishsummer.system.mapper.SysRoleMenuMapper;
+import io.github.wishsummer.system.mapper.SysUserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

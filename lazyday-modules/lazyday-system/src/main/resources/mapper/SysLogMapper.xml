@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="io.github.wishsummer.mapper.SysLogMapper">
+<mapper namespace="io.github.wishsummer.system.mapper.SysLogMapper">
 
     <resultMap id="BaseResultMap" type="io.github.wishsummer.domain.SysLogObject">
             <id property="logId" column="log_id" jdbcType="BIGINT"/>

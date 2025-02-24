@@ -36,8 +36,6 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-        <!-- Jwt -->
-
 
         <!--    项目模块-->
         <dependency>

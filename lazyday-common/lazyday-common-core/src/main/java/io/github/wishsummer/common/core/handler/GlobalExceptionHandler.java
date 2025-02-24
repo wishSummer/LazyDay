@@ -27,6 +27,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ServiceException.class)
     public Result handleServiceException(ServiceException e, HttpServletRequest request) {
         log.error(e.getMessage(), e);
-        return Result.error(HttpStatus.FORBIDDEN, e.getMessage());
+        return Result.error(HttpStatus.FORBIDDEN.getCode(), e.getMessage());
     }
 }

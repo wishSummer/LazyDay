@@ -3,13 +3,14 @@ package io.github.wishsummer.common.core.utils;
 import com.alibaba.fastjson2.JSON;
 import io.github.wishsummer.common.core.constant.Constants;
 import io.github.wishsummer.common.core.domain.Result;
+import io.github.wishsummer.common.core.exception.ServiceException;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -55,10 +56,9 @@ public class ServletUtils {
 
     public static Map<String, Object> getTokenInfo() {
         try {
-            Claims body = Jwts.parser().setSigningKey(Constants.SECRET).parseClaimsJws(ServletUtils.getRequest().getHeader(Constants.AUTHENTICATION)).getBody();
-            return body;
+            return Jwts.parser().setSigningKey(Constants.SECRET).parseClaimsJws(ServletUtils.getRequest().getHeader(Constants.AUTHENTICATION)).getBody();
         } catch (Exception e) {
-            throw new ServiceException("权限获取失败，请重新登录");
+            throw new ServiceException("登陆状态失效，请重新登录");
         }
     }
 
@@ -170,8 +170,7 @@ public class ServletUtils {
         return webFluxResponseWrite(response, HttpStatus.OK, value, code);
     }
 
-    public static Mono<Void> webFluxResponseWrite(ServerHttpResponse response, HttpStatus status, Object value, int code)
-    {
+    public static Mono<Void> webFluxResponseWrite(ServerHttpResponse response, HttpStatus status, Object value, int code) {
         return webFluxResponseWrite(response, MediaType.APPLICATION_JSON_VALUE, status, value, code);
     }
 

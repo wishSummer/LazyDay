@@ -1,5 +1,6 @@
 package io.github.wishsummer.gateway.filter;
 
+import io.github.wishsummer.common.core.constant.CacheConstants;
 import io.github.wishsummer.common.core.constant.Constants;
 import io.github.wishsummer.common.core.service.RedisService;
 import io.github.wishsummer.common.core.utils.JwtUtils;

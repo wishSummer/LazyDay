@@ -11,10 +11,10 @@ public class CacheConstants {
     /**
      * 缓存有效期，默认720（分钟）
      */
-    public final static long EXPIRATION = 720;
+    public final static long EXPIRATION = 480;
 
     /**
-     * 权限缓存前缀
+     * 登录用户信息缓存前缀
      */
     public final static String LOGIN_TOKEN_KEY = "login_tokens:";
 
@@ -28,5 +28,4 @@ public class CacheConstants {
      * IP 黑名单
      */
     public static  final String SYS_LOGIN_BLACKIPLIST = "SYS_LOGIN_BLACKIPLIST";
-
 }
