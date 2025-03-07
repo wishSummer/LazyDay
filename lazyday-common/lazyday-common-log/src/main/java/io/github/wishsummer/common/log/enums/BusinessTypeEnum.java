@@ -1,4 +1,4 @@
-package io.github.wishsummer.enums;
+package io.github.wishsummer.common.log.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -8,6 +8,7 @@ import io.github.wishsummer.api.domain.SysUserObject;
 import io.github.wishsummer.api.model.LoginUser;
 import io.github.wishsummer.common.core.constant.CacheConstants;
 import io.github.wishsummer.common.core.constant.Constants;
+import io.github.wishsummer.common.core.constant.UserConstants;
 import io.github.wishsummer.common.core.domain.Result;
 import io.github.wishsummer.common.core.service.RedisService;
 import io.github.wishsummer.common.core.utils.ServletUtils;
@@ -69,7 +70,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserObject
     @Override
     public Result<UserInfoVo> getUserInfo() {
         Map<String, Object> tokenInfo = ServletUtils.getTokenInfo();
-        LoginUser cacheObject = redisService.getCacheObject(CacheConstants.LOGIN_TOKEN_KEY + tokenInfo.get(Constants.USER_KEY));
+        LoginUser cacheObject = redisService.getCacheObject(CacheConstants.LOGIN_TOKEN_KEY + tokenInfo.get(UserConstants.USER_KEY));
         return Result.success(new UserInfoVo().build(cacheObject));
     }
 

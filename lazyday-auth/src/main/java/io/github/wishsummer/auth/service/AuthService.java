@@ -114,8 +114,8 @@ public class AuthService {
         String token = SecurityUtils.getToken(request);
         if (StringUtils.isNotBlank(token)) {
             Claims claims = SecurityUtils.parseToken(token);
-            redisService.deleteObject(CacheConstants.LOGIN_TOKEN_KEY + FormatUtils.convert(claims.get(Constants.USER_KEY)));
-            remoteLogService.saveLog(passwordService.getSysLogObject(FormatUtils.convert(claims.get(Constants.DETAILS_USERNAME)), HttpStatus.SUCCESS.getCode(), "用户正常下线"));
+            redisService.deleteObject(CacheConstants.LOGIN_TOKEN_KEY + FormatUtils.convert(claims.get(UserConstants.USER_KEY)));
+            remoteLogService.saveLog(passwordService.getSysLogObject(FormatUtils.convert(claims.get(UserConstants.DETAILS_USERNAME)), HttpStatus.SUCCESS.getCode(), "用户正常下线"));
         }
         return Result.success();
     }
@@ -152,7 +152,7 @@ public class AuthService {
         String entoken = SecurityUtils.getToken(request);
         if (StringUtils.isNotBlank(entoken)) {
             Claims claims = SecurityUtils.parseToken(entoken);
-            LoginUser loginUser = redisService.getCacheObject(CacheConstants.LOGIN_TOKEN_KEY + claims.get(Constants.USER_KEY));
+            LoginUser loginUser = redisService.getCacheObject(CacheConstants.LOGIN_TOKEN_KEY + claims.get(UserConstants.USER_KEY));
             if (loginUser != null) {
                 refreshToken(loginUser);
                 return Result.success();
@@ -171,9 +171,9 @@ public class AuthService {
 
         // Jwt存储信息
         Map<String, Object> claimsMap = new HashMap<String, Object>();
-        claimsMap.put(Constants.USER_KEY, tokenUUID);
-        claimsMap.put(Constants.DETAILS_USER_ID, userId);
-        claimsMap.put(Constants.DETAILS_USERNAME, userName);
+        claimsMap.put(UserConstants.USER_KEY, tokenUUID);
+        claimsMap.put(UserConstants.DETAILS_USER_ID, userId);
+        claimsMap.put(UserConstants.DETAILS_USERNAME, userName);
 
         // 接口返回信息
         Map<String, Object> rspMap = new HashMap<String, Object>();

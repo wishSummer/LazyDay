@@ -4,7 +4,6 @@ import com.alibaba.fastjson2.JSON;
 import io.github.wishsummer.common.core.constant.Constants;
 import io.github.wishsummer.common.core.domain.Result;
 import io.github.wishsummer.common.core.exception.ServiceException;
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,6 +27,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Description: 针对 HttpServlet 请求、响应
+ *
+ * @author < a href="wangfc@hzwesoft.com">wangfc</ a>
+ * @version $ Id: ServletUtils.java, 2025/3/3 下午2:58 $
+ */
 @Slf4j
 public class ServletUtils {
 
@@ -61,27 +66,6 @@ public class ServletUtils {
             throw new ServiceException("登陆状态失效，请重新登录");
         }
     }
-
-    /**
-     * 根据request获取请求token
-     */
-    public static String getToken(HttpServletRequest request) {
-        // 从header获取token标识
-        String token = request.getHeader(Constants.AUTHENTICATION);
-        return replaceTokenPrefix(token);
-    }
-
-    /**
-     * 裁剪token前缀
-     */
-    public static String replaceTokenPrefix(String token) {
-        // 如果前端设置了令牌前缀，则裁剪掉前缀
-        if (StringUtils.isNotEmpty(token) && token.startsWith(Constants.PREFIX)) {
-            token = token.replaceFirst(Constants.PREFIX, "");
-        }
-        return token;
-    }
-
 
     /**
      * 获取response

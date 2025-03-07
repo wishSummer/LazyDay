@@ -1,11 +1,11 @@
-package io.github.wishsummer.aspect;
+package io.github.wishsummer.common.log.aspect;
 
 import com.alibaba.fastjson2.JSON;
-import io.github.wishsummer.annotation.WebLog;
+import io.github.wishsummer.common.log.annotation.WebLog;
 import io.github.wishsummer.api.domain.SysLogObject;
 import io.github.wishsummer.api.remote.RemoteLogService;
 import io.github.wishsummer.common.core.utils.ServletUtils;
-import io.github.wishsummer.filter.PropertyPreExcludeFilter;
+import io.github.wishsummer.common.log.filter.PropertyPreExcludeFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.ArrayUtils;

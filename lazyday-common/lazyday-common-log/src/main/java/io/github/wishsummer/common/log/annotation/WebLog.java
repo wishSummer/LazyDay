@@ -1,6 +1,6 @@
-package io.github.wishsummer.annotation;
+package io.github.wishsummer.common.log.annotation;
 
-import io.github.wishsummer.enums.BusinessTypeEnum;
+import io.github.wishsummer.common.log.enums.BusinessTypeEnum;
 
 import java.lang.annotation.*;
 

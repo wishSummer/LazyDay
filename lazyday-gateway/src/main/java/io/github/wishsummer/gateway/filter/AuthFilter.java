@@ -2,6 +2,7 @@ package io.github.wishsummer.gateway.filter;
 
 import io.github.wishsummer.common.core.constant.CacheConstants;
 import io.github.wishsummer.common.core.constant.Constants;
+import io.github.wishsummer.common.core.constant.UserConstants;
 import io.github.wishsummer.common.core.service.RedisService;
 import io.github.wishsummer.common.core.utils.JwtUtils;
 import io.github.wishsummer.common.core.utils.ServletUtils;
@@ -45,20 +46,20 @@ public class AuthFilter implements GlobalFilter, Ordered {
             return unauthorizedResponse(exchange, "令牌已过期或验证不正确!");
         }
 
-        String userKey = JwtUtils.getValue(claims, Constants.USER_KEY);
+        String userKey = JwtUtils.getValue(claims, UserConstants.USER_KEY);
         if (redisService.hasKey(userKey)) {
             return unauthorizedResponse(exchange, "登录状态已过期");
         }
-        String userId = JwtUtils.getValue(claims, Constants.DETAILS_USER_ID);
-        String username = JwtUtils.getValue(claims, Constants.DETAILS_USERNAME);
+        String userId = JwtUtils.getValue(claims, UserConstants.DETAILS_USER_ID);
+        String username = JwtUtils.getValue(claims, UserConstants.DETAILS_USERNAME);
         if (StringUtils.isBlank(userId) || StringUtils.isBlank(username)) {
             return unauthorizedResponse(exchange, "令牌验证失败");
         }
 
         // 添加用户信息到请求头
-        mutate.header(Constants.USER_KEY, ServletUtils.urlEncode(userKey));
-        mutate.header(Constants.DETAILS_USER_ID, ServletUtils.urlEncode(userId));
-        mutate.header(Constants.DETAILS_USERNAME, ServletUtils.urlEncode(username));
+        mutate.header(UserConstants.USER_KEY, ServletUtils.urlEncode(userKey));
+        mutate.header(UserConstants.DETAILS_USER_ID, ServletUtils.urlEncode(userId));
+        mutate.header(UserConstants.DETAILS_USERNAME, ServletUtils.urlEncode(username));
 
 
         return chain.filter(exchange.mutate().request(mutate.build()).build());

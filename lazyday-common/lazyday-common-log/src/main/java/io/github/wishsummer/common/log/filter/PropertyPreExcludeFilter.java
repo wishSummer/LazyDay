@@ -1,4 +1,4 @@
-package io.github.wishsummer.filter;
+package io.github.wishsummer.common.log.filter;
 
 import com.alibaba.fastjson2.filter.SimplePropertyPreFilter;
 import lombok.NoArgsConstructor;

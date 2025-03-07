@@ -7,6 +7,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -66,5 +67,7 @@ public class SysRoleObject implements Serializable {
      * 备注
      */
     private String remark;
+
+    private List<SysMenuObject> menuObjectList;
 
 }

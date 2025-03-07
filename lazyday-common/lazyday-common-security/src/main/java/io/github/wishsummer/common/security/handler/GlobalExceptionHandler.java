@@ -1,4 +1,4 @@
-package io.github.wishsummer.common.core.handler;
+package io.github.wishsummer.common.security.handler;
 
 import io.github.wishsummer.common.core.constant.HttpStatus;
 import io.github.wishsummer.common.core.domain.Result;

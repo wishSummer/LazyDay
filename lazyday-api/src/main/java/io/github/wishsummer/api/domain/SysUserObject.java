@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户信息表
@@ -83,5 +84,7 @@ public class SysUserObject implements Serializable {
      * 备注
      */
     private String remark;
+
+    private List<SysRoleObject> roleObjectList;
 
 }
